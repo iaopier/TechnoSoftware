@@ -67,9 +67,10 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-        	<groupId>com.fasterxml.jackson.dataformat</groupId>
-        	<artifactId>jackson-dataformat-csv</artifactId>
-    	</dependency>
+    			<groupId>com.opencsv</groupId>
+    	<artifactId>opencsv</artifactId>
+    <version>4.0</version>
+</dependency>
 	</dependencies>
 
 	<build>

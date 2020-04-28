@@ -25,9 +25,8 @@ public class XptoApiController {
 	XptoService xptoService;
 	
 	@RequestMapping(value = "/inputCSV", method = RequestMethod.GET)
-	public ResponseEntity<?> inputCSV() throws IOException {
-		InputStream inputStream = new FileInputStream(new File("E:\\Testes\\TechnoSoftware\\Desafio Cidades - Back End.csv"));
-		return new ResponseEntity<>(xptoService.saveAll(City.class,inputStream), HttpStatus.OK);
+	public ResponseEntity<?> inputCSV() throws IOException{
+		return new ResponseEntity<>(xptoService.saveAll("E:\\Testes\\TechnoSoftware\\Desafio Cidades - Back End.csv"), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/getCSV", method = RequestMethod.GET)
