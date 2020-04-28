@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 import com.packet.Model.City;
 import com.packet.Repository.XptoRepository;
 import com.packet.Service.XptoService;
@@ -32,14 +34,16 @@ public class XptoServiceImpl implements XptoService{
 	public String saveAll(String stream) throws FileNotFoundException{
 		ColumnPositionMappingStrategy strat = new ColumnPositionMappingStrategy();
 		strat.setType(City.class);
-        String[] columns = new String[]{"ibge_id", "uf", "name", "capital","lon","lat","no_accents","alternative_names","microregion","mesoregion"};
+        String[] columns = {"ibge_id", "uf", "name", "capital","lon","lat","no_accents","alternative_names","microregion","mesoregion"};
         strat.setColumnMapping(columns);
-        CsvToBean csv = new CsvToBean();
-        CSVReader csvReader = new CSVReader(new FileReader(stream));
-        List list = csv.parse(strat, csvReader);
-        for (Object object : list) {
-            City city = (City) object;
-            System.out.println(city);
+        CsvToBean<City> csv = new CsvToBeanBuilder(new FileReader(stream))
+                .withMappingStrategy(strat)
+                .withSkipLines(1)
+                .withIgnoreLeadingWhiteSpace(true)
+                .build();
+        Iterator<City> cityIterator = csv.iterator();
+        while(cityIterator.hasNext()) {
+            save(cityIterator.next());
         }
         return "Saved";
 	}
