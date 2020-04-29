@@ -18,4 +18,6 @@ public interface XptoServiceCity {
 	City cityPerIBGEid(int ibge_id);
 	List<City> citiesInState(String uf);
 	City delete(City cidade);
+	String distanceBetweenCities();
+	
 }	

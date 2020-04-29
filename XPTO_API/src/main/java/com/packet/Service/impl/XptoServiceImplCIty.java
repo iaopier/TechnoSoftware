@@ -71,7 +71,7 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 		List<State> outPut = new ArrayList<State>();
 
 		State minCidades = s.get(0);
-		State maxCidades  = s.get(0);
+		State maxCidades = s.get(0);
 		for (int i = 0; i < s.size(); i++) {
 			if (s.get(i).getNum() > maxCidades.getNum()) {
 				maxCidades = s.get(i);
@@ -88,9 +88,9 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 		outPut.add(maxCidades);
 		return outPut;
 	}
-	
+
 	@Override
-	public List<State> getNumberCitiesPerState(){
+	public List<State> getNumberCitiesPerState() {
 		List<City> l = xptoRepository.findAll();
 		List<State> s = new ArrayList<State>();
 		City c0 = l.get(0);
@@ -130,6 +130,45 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 		xptoRepository.delete(city);
 		return city;
 	}
+
+	@Override
+	public String distanceBetweenCities() {
+		List<City> l = xptoRepository.findAll();
+		City c0 = l.get(0);
+		double dist = 0;
+		City c1 = null;
+		City c2 = null;
+		for (int i = 0; i < l.size(); i++) {
+			if(getDistanceFromLatLonInKm(c0.getLat(),c0.getLon(),l.get(i).getLat(),l.get(i).getLon())> dist) {
+				dist = getDistanceFromLatLonInKm(c0.getLat(),c0.getLon(),l.get(i).getLat(),l.get(i).getLon());
+				c1 = c0;
+				c2 = l.get(i);
+			}
+
+		}
+		String d = "[{\"dist\":\""+dist+"\",\"c1\":\""+c1.getName()+"\",\"c2\":\""+c2.getName()+"\"}]"; 
+		return d;
+	}
+
+	private double getDistanceFromLatLonInKm(double lat1, double lon1,double lat2, double lon2) {
+		  int R = 6371; // Radius of the earth in km
+		  double dLat = deg2rad(lat2-lat1);  // deg2rad below
+		  double dLon = deg2rad(lon2-lon1); 
+		  double a = 
+		    Math.sin(dLat/2) * Math.sin(dLat/2) +
+		    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+		    Math.sin(dLon/2) * Math.sin(dLon/2)
+		    ; 
+		  double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		  double d = R * c; // Distance in km
+		  return d;
+		}
+
+	private double deg2rad(double deg) {
+		  return deg * (Math.PI/180);
+		}
+	
+	
 	
 	
 

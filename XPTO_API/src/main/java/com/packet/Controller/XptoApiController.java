@@ -71,4 +71,14 @@ public class XptoApiController {
 		return new ResponseEntity<>(xptoServiceCity.delete(city), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/getColCSV", method = RequestMethod.GET)
+	public ResponseEntity<?> getColCSV(@RequestParam("col") String col) throws IOException {
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getMaxDist", method = RequestMethod.GET)
+	public ResponseEntity<?> getMaxDist() throws IOException {
+		return new ResponseEntity<>(xptoServiceCity.distanceBetweenCities(), HttpStatus.OK);
+	}
+
 }
