@@ -16,4 +16,5 @@ public interface XptoServiceCity {
 	List<State> findGreaterAndLeast();
 	List<State> getNumberCitiesPerState();
 	City cityPerIBGEid(int ibge_id);
+	List<City> citiesInState(String uf);
 }	

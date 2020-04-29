@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.packet.Model.City;
 import com.packet.Service.XptoServiceCity;
-import com.packet.Service.XptoServiceState;
 
 @RestController
 @RequestMapping("")
@@ -25,11 +24,6 @@ public class XptoApiController {
 	
 	@Autowired
 	XptoServiceCity xptoServiceCity;
-	
-	@Autowired
-	XptoServiceState xptoServiceState;
-	
-	
 	
 	@RequestMapping(value = "/inputCSV", method = RequestMethod.GET)
 	public ResponseEntity<?> inputCSV() throws IOException{
@@ -59,6 +53,11 @@ public class XptoApiController {
 	@RequestMapping(value = "/getCityPerIBGEId", method = RequestMethod.GET)
 	public ResponseEntity<?> getCityPerIBGEid(@RequestParam("ibge_id") int ibge_id) throws IOException {
 		return new ResponseEntity<>(xptoServiceCity.cityPerIBGEid(ibge_id), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getCitiesInState", method = RequestMethod.GET)
+	public ResponseEntity<?> getCitiesInState(@RequestParam("uf") String uf) throws IOException {
+		return new ResponseEntity<>(xptoServiceCity.citiesInState(uf), HttpStatus.OK);
 	}
 	
 }

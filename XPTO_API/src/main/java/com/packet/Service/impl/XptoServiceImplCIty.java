@@ -120,4 +120,12 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 		return xptoRepository.findByIBGE(ibge_id);
 	}
 
+	@Override
+	public List<City> citiesInState(String uf) {
+		// TODO Auto-generated method stub
+		return xptoRepository.findCitiesInState(uf);
+	}
+	
+	
+
 }

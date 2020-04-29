@@ -17,4 +17,6 @@ public interface XptoRepositoryCity extends JpaRepository<City,Long>{
 	List<City> findByCapital();
 	@Query(value = "SELECT * FROM cidades.city WHERE ibge_id = :ibge_id", nativeQuery=true)
 	City findByIBGE(@Param("ibge_id") int ibge_id);
+	@Query(value = "SELECT * FROM cidades.city WHERE uf = :uf", nativeQuery=true)
+	List<City> findCitiesInState(@Param("uf") String uf);
 }
