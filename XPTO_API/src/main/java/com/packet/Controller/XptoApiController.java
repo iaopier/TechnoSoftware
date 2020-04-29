@@ -47,7 +47,7 @@ public class XptoApiController {
 	
 	@RequestMapping(value = "/getStateNameGreaterAndLeast", method = RequestMethod.GET)
 	public ResponseEntity<?> getStateNameGreaterAndLeast() throws IOException {
-		return new ResponseEntity<>(xptoServiceState.findGreaterAndLeast(), HttpStatus.OK);
+		return new ResponseEntity<>(xptoServiceCity.findGreaterAndLeast(), HttpStatus.OK);
 	}
 	
 }

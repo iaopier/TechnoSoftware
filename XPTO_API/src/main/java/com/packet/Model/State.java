@@ -11,7 +11,7 @@ public class State {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String uf;
-	private int num;
+	private int num = 0;
 	public State() {
 		super();
 	}
@@ -24,8 +24,8 @@ public class State {
 	public int getNum() {
 		return num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setNum() {
+		this.num++;
 	}
 	
 }

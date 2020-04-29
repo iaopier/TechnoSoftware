@@ -6,10 +6,12 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.packet.Model.City;
+import com.packet.Model.State;
 
 public interface XptoServiceCity {
 	String saveAll(String string) throws IOException;
 	List<City> findAll();
 	City save(City city);
 	List<City> findAllCapital();
+	List<State> findGreaterAndLeast();
 }	
