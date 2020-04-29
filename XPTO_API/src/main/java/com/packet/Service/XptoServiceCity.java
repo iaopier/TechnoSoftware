@@ -17,4 +17,5 @@ public interface XptoServiceCity {
 	List<State> getNumberCitiesPerState();
 	City cityPerIBGEid(int ibge_id);
 	List<City> citiesInState(String uf);
+	City delete(City cidade);
 }	

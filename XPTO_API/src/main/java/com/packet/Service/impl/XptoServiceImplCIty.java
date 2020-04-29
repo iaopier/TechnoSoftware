@@ -124,6 +124,12 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 	public List<City> citiesInState(String uf) {
 		return xptoRepository.findCitiesInState(uf);
 	}
+
+	@Override
+	public City delete(City city) {
+		xptoRepository.delete(city);
+		return city;
+	}
 	
 	
 

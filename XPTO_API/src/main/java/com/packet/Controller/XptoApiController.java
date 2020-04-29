@@ -62,8 +62,13 @@ public class XptoApiController {
 	}
 	
 	@RequestMapping(value = "/postCity", method = RequestMethod.POST)
-	public ResponseEntity<?> postCity(@RequestBody City cidade) {
-		return new ResponseEntity<>(xptoServiceCity.save(cidade), HttpStatus.OK);
-	}	
+	public ResponseEntity<?> postCity(@RequestBody City city) {
+		return new ResponseEntity<>(xptoServiceCity.save(city), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/deleteCity", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteCity(@RequestBody City city) {
+		return new ResponseEntity<>(xptoServiceCity.delete(city), HttpStatus.OK);
+	}
 	
 }
