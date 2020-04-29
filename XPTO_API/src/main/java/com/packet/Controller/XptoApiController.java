@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.packet.Model.City;
@@ -53,6 +54,11 @@ public class XptoApiController {
 	@RequestMapping(value = "/getCitiesPerState", method = RequestMethod.GET)
 	public ResponseEntity<?> getCitiesPerState() throws IOException {
 		return new ResponseEntity<>(xptoServiceCity.getNumberCitiesPerState(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getCityPerIBGEId", method = RequestMethod.GET)
+	public ResponseEntity<?> getCityPerIBGEid(@RequestParam("ibge_id") int ibge_id) throws IOException {
+		return new ResponseEntity<>(xptoServiceCity.cityPerIBGEid(ibge_id), HttpStatus.OK);
 	}
 	
 }

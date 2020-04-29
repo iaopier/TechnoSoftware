@@ -115,4 +115,9 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 		return s;
 	}
 
+	@Override
+	public City cityPerIBGEid(int ibge_id) {
+		return xptoRepository.findByIBGE(ibge_id);
+	}
+
 }
