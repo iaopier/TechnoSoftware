@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,5 +60,10 @@ public class XptoApiController {
 	public ResponseEntity<?> getCitiesInState(@RequestParam("uf") String uf) throws IOException {
 		return new ResponseEntity<>(xptoServiceCity.citiesInState(uf), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/postCity", method = RequestMethod.POST)
+	public ResponseEntity<?> postCity(@RequestBody City cidade) {
+		return new ResponseEntity<>(xptoServiceCity.save(cidade), HttpStatus.OK);
+	}	
 	
 }

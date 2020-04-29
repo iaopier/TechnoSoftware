@@ -122,7 +122,6 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 
 	@Override
 	public List<City> citiesInState(String uf) {
-		// TODO Auto-generated method stub
 		return xptoRepository.findCitiesInState(uf);
 	}
 	
