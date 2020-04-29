@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +22,14 @@ import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.packet.Model.City;
-import com.packet.Repository.XptoRepository;
-import com.packet.Service.XptoService;
+import com.packet.Repository.XptoRepositoryCity;
+import com.packet.Service.XptoServiceCity;
 
 @Service
-public class XptoServiceImpl implements XptoService{
+public class XptoServiceImplCIty implements XptoServiceCity{
 	
 	@Autowired
-	XptoRepository xptoRepository;
+	XptoRepositoryCity xptoRepository;
 	
 	@Override
 	public String saveAll(String stream) throws FileNotFoundException{
@@ -59,4 +60,10 @@ public class XptoServiceImpl implements XptoService{
 		xptoRepository.save(city);
 		return city;
 	}
+
+
+	@Override
+	public List<City> findAllCapital() {
+		return xptoRepository.findByCapital();
+	}	
 }
