@@ -50,4 +50,9 @@ public class XptoApiController {
 		return new ResponseEntity<>(xptoServiceCity.findGreaterAndLeast(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/getCitiesPerState", method = RequestMethod.GET)
+	public ResponseEntity<?> getCitiesPerState() throws IOException {
+		return new ResponseEntity<>(xptoServiceCity.getNumberCitiesPerState(), HttpStatus.OK);
+	}
+	
 }

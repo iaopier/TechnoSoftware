@@ -14,4 +14,5 @@ public interface XptoServiceCity {
 	City save(City city);
 	List<City> findAllCapital();
 	List<State> findGreaterAndLeast();
+	List<State> getNumberCitiesPerState();
 }	

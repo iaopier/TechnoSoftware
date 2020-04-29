@@ -67,6 +67,30 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 
 	@Override
 	public List<State> findGreaterAndLeast() {
+		List<State> s = getNumberCitiesPerState();
+		List<State> outPut = new ArrayList<State>();
+
+		State minCidades = s.get(0);
+		State maxCidades  = s.get(0);
+		for (int i = 0; i < s.size(); i++) {
+			if (s.get(i).getNum() > maxCidades.getNum()) {
+				maxCidades = s.get(i);
+			}
+
+		}
+		for (int i = 0; i < s.size(); i++) {
+			if (s.get(i).getNum() < minCidades.getNum()) {
+				minCidades = s.get(i);
+			}
+
+		}
+		outPut.add(minCidades);
+		outPut.add(maxCidades);
+		return outPut;
+	}
+	
+	@Override
+	public List<State> getNumberCitiesPerState(){
 		List<City> l = xptoRepository.findAll();
 		List<State> s = new ArrayList<State>();
 		City c0 = l.get(0);
@@ -88,25 +112,7 @@ public class XptoServiceImplCIty implements XptoServiceCity {
 				c0 = c;
 			}
 		}
-		List<State> outPut = new ArrayList<State>();
-
-		State minCidades = s.get(0);
-		State maxCidades  = s.get(0);
-		for (int i = 0; i < s.size(); i++) {
-			if (s.get(i).getNum() > maxCidades.getNum()) {
-				maxCidades = s.get(i);
-			}
-
-		}
-		for (int i = 0; i < s.size(); i++) {
-			if (s.get(i).getNum() < minCidades.getNum()) {
-				minCidades = s.get(i);
-			}
-
-		}
-		outPut.add(minCidades);
-		outPut.add(maxCidades);
-		return outPut;
+		return s;
 	}
 
 }
